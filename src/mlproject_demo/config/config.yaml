@@ -3,3 +3,8 @@ data:
   raw_path: 'artifacts/raw/raw_data.csv'
   rent_path: 'artifacts/rent/rent_data.csv'
   sale_path: 'artifacts/sale/sale_data.csv'
+
+transformed_rent:
+  rent_path: 'artifacts/rent/rent_data.csv'
+  rent_transformed_path: 'artfiacts/transfromed/rent/'
+  

@@ -1,0 +1,38 @@
+schema: '2.0'
+stages:
+  data_ingestion:
+    cmd: python -m src.mlproject_demo.data.data_ingestion
+    deps:
+    - path: src/mlproject_demo/config/config.yaml
+      hash: md5
+      md5: c6aee5f076e28d6efd586e50823db445
+      size: 167
+    - path: src/mlproject_demo/data/data_ingestion.py
+      hash: md5
+      md5: 1a3760682f15f4d36d3cf845fa1f3e05
+      size: 2624
+    - path: src/mlproject_demo/utils/common.py
+      hash: md5
+      md5: 23e1ee0ea97a66d4a259deafbb2fa155
+      size: 1992
+    - path: src/mlproject_demo/utils/exception.py
+      hash: md5
+      md5: 38259c3b6114c74f179741330acd3a22
+      size: 708
+    - path: src/mlproject_demo/utils/logger.py
+      hash: md5
+      md5: 7bfa7fe0ed95880585ff4bf50e045f5a
+      size: 473
+    outs:
+    - path: artifacts/raw/raw_data.csv
+      hash: md5
+      md5: 90b34c4cf312000a340d41e1f7de2fd4
+      size: 3827951
+    - path: artifacts/rent/rent_data.csv
+      hash: md5
+      md5: c5051d9547166b4e2b6e22a8ef1eb77d
+      size: 1013622
+    - path: artifacts/sale/sale_data.csv
+      hash: md5
+      md5: 4df97b2f62f1e5caf5138b3854ac020d
+      size: 2814417

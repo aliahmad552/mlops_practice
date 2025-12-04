@@ -67,8 +67,7 @@ class DataIngestion:
         self.save_raw_data(df)
         logger.info("Data Ingestion succesffuly completed")
 
-        
-if __name__ == '__main__':
-    data_ingestion = DataIngestion()
-    data_ingestion.run()
 
+if __name__ == "__main__":
+    ingestion = DataIngestion()
+    ingestion.run()

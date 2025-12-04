@@ -3,11 +3,12 @@ stages:
     cmd: python -m src.mlproject_demo.data.data_ingestion
     deps:
       - src/mlproject_demo/data/data_ingestion.py
-      - src/mlproject_demo/utils/file_ops.py
+      - src/mlproject_demo/utils/common.py
       - src/mlproject_demo/utils/logger.py
-      - src/mlproject_demo/utils/exceptions.py
+      - src/mlproject_demo/utils/exception.py
       - src/mlproject_demo/config/config.yaml
     outs:
+      - artifacts/raw/raw_data.csv
       - artifacts/sale/sale_data.csv
       - artifacts/rent/rent_data.csv
 

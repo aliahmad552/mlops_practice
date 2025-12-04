@@ -6,5 +6,8 @@ data:
 
 transformed_rent:
   rent_path: 'artifacts/rent/rent_data.csv'
-  rent_transformed_path: 'artfiacts/transfromed/rent/'
-  
+  rent_transformed_path: 'artifacts/rent/transformed/'
+
+transformed_sale:
+  sale_path: 'artifacts/sale/sale_data.csv'
+  sale_transformed_path: 'artifacts/sale/transformed/'

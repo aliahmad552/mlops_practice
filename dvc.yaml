@@ -12,3 +12,34 @@ stages:
       - artifacts/sale/sale_data.csv
       - artifacts/rent/rent_data.csv
 
+  data_transformation_rent:
+    cmd: python -m src.mlproject_demo.data.data_transformation_rent
+    deps:
+      - src/mlproject_demo/data/data_transformation_rent.py
+      - src/mlproject_demo/utils/common.py
+      - src/mlproject_demo/utils/logger.py
+      - src/mlproject_demo/utils/exception.py
+      - src/mlproject_demo/config/config.yaml
+      - artifacts/rent/rent_data.csv
+    outs:
+      - artifacts/rent/transformed/X_train.npy
+      - artifacts/rent/transformed/X_test.npy
+      - artifacts/rent/transformed/y_train.npy
+      - artifacts/rent/transformed/y_test.npy
+      - artifacts/rent/transformed/preprocessor.pkl
+
+  data_transformation_sale:
+    cmd: python -m src.mlproject_demo.data.data_transformation_sale
+    deps:
+      - src/mlproject_demo/data/data_transformation_sale.py
+      - src/mlproject_demo/utils/common.py
+      - src/mlproject_demo/utils/logger.py
+      - src/mlproject_demo/utils/exception.py
+      - src/mlproject_demo/config/config.yaml
+      - artifacts/sale/sale_data.csv
+    outs:
+      - artifacts/sale/transformed/X_train.npy
+      - artifacts/sale/transformed/X_test.npy
+      - artifacts/sale/transformed/y_train.npy
+      - artifacts/sale/transformed/y_test.npy
+      - artifacts/sale/transformed/preprocessor.pkl

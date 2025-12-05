@@ -17,6 +17,11 @@ def load_config(path = 'src/mlproject_demo/config/config.yaml'):
 
     return config
 
+def load_params(path = 'params.yaml'):
+    with open(path,'r') as f:
+        params = yaml.safe_load(f)
+    return params
+
 host = os.getenv("host")
 user = os.getenv("user")
 password = os.getenv("password")

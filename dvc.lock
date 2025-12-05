@@ -5,16 +5,16 @@ stages:
     deps:
     - path: src/mlproject_demo/config/config.yaml
       hash: md5
-      md5: 01d55387a459f6209d5eb4da941e8b20
-      size: 411
+      md5: 5c6205e94577e54b96cf8db266472a60
+      size: 906
     - path: src/mlproject_demo/data/data_ingestion.py
       hash: md5
       md5: 1a3760682f15f4d36d3cf845fa1f3e05
       size: 2624
     - path: src/mlproject_demo/utils/common.py
       hash: md5
-      md5: 23e1ee0ea97a66d4a259deafbb2fa155
-      size: 1992
+      md5: c7d4c5bd8b59799bb11391340caacde9
+      size: 2120
     - path: src/mlproject_demo/utils/exception.py
       hash: md5
       md5: 38259c3b6114c74f179741330acd3a22
@@ -43,26 +43,10 @@ stages:
       hash: md5
       md5: c5051d9547166b4e2b6e22a8ef1eb77d
       size: 1013622
-    - path: src/mlproject_demo/config/config.yaml
-      hash: md5
-      md5: 01d55387a459f6209d5eb4da941e8b20
-      size: 411
     - path: src/mlproject_demo/data/data_transformation_rent.py
       hash: md5
-      md5: f6e7396d002a888f6d43a112d32ef4aa
+      md5: fc16ee7b8b88cecd1fca029735427ee3
       size: 4510
-    - path: src/mlproject_demo/utils/common.py
-      hash: md5
-      md5: 23e1ee0ea97a66d4a259deafbb2fa155
-      size: 1992
-    - path: src/mlproject_demo/utils/exception.py
-      hash: md5
-      md5: 38259c3b6114c74f179741330acd3a22
-      size: 708
-    - path: src/mlproject_demo/utils/logger.py
-      hash: md5
-      md5: 7bfa7fe0ed95880585ff4bf50e045f5a
-      size: 473
     outs:
     - path: artifacts/rent/transformed/X_test.npy
       hash: md5
@@ -78,8 +62,8 @@ stages:
       size: 22988
     - path: artifacts/rent/transformed/y_test.npy
       hash: md5
-      md5: 7d38bc7d1c12fbc8416cd5cbf1cf7601
-      size: 14049376
+      md5: 62628e7546fb00ae8e77ac0c7f74b358
+      size: 27784
     - path: artifacts/rent/transformed/y_train.npy
       hash: md5
       md5: 927287a1800870c08dff4201d65cdaa9
@@ -91,26 +75,10 @@ stages:
       hash: md5
       md5: 4df97b2f62f1e5caf5138b3854ac020d
       size: 2814417
-    - path: src/mlproject_demo/config/config.yaml
-      hash: md5
-      md5: 01d55387a459f6209d5eb4da941e8b20
-      size: 411
     - path: src/mlproject_demo/data/data_transformation_sale.py
       hash: md5
-      md5: ab23a0078d05f275c3ca167c8abdcc7b
+      md5: e8da8a3a436851bd485acaee85da8fe0
       size: 4510
-    - path: src/mlproject_demo/utils/common.py
-      hash: md5
-      md5: 23e1ee0ea97a66d4a259deafbb2fa155
-      size: 1992
-    - path: src/mlproject_demo/utils/exception.py
-      hash: md5
-      md5: 38259c3b6114c74f179741330acd3a22
-      size: 708
-    - path: src/mlproject_demo/utils/logger.py
-      hash: md5
-      md5: 7bfa7fe0ed95880585ff4bf50e045f5a
-      size: 473
     outs:
     - path: artifacts/sale/transformed/X_test.npy
       hash: md5
@@ -126,9 +94,73 @@ stages:
       size: 56402
     - path: artifacts/sale/transformed/y_test.npy
       hash: md5
-      md5: e54e4a35c3744cbcd3068af1727c97d2
-      size: 99529848
+      md5: 1a8f6fb33fbd084334599a25778447b8
+      size: 75816
     - path: artifacts/sale/transformed/y_train.npy
       hash: md5
       md5: 5943f7c5d459015aaabf2518ee2352bb
       size: 302872
+  train_rent_model:
+    cmd: python -m src.mlproject_demo.models.train_rent_model
+    deps:
+    - path: artifacts/rent/transformed/X_test.npy
+      hash: md5
+      md5: 7d38bc7d1c12fbc8416cd5cbf1cf7601
+      size: 14049376
+    - path: artifacts/rent/transformed/X_train.npy
+      hash: md5
+      md5: 243fc90162fa48a657299037e5405cb4
+      size: 56184928
+    - path: artifacts/rent/transformed/y_test.npy
+      hash: md5
+      md5: 62628e7546fb00ae8e77ac0c7f74b358
+      size: 27784
+    - path: artifacts/rent/transformed/y_train.npy
+      hash: md5
+      md5: 927287a1800870c08dff4201d65cdaa9
+      size: 110728
+    - path: src/mlproject_demo/config/config.yaml
+      hash: md5
+      md5: 5c6205e94577e54b96cf8db266472a60
+      size: 906
+    - path: src/mlproject_demo/models/train_rent_model.py
+      hash: md5
+      md5: cf3a3cc88b1d5c664f52b505214c7d1d
+      size: 4091
+    outs:
+    - path: artifacts/rent/models/xgboost_rent.pkl
+      hash: md5
+      md5: 917f7c0414e4bc12623928c34e2bde1f
+      size: 1277120
+  train_sale_model:
+    cmd: python -m src.mlproject_demo.models.train_sale_model
+    deps:
+    - path: artifacts/sale/transformed/X_test.npy
+      hash: md5
+      md5: e54e4a35c3744cbcd3068af1727c97d2
+      size: 99529848
+    - path: artifacts/sale/transformed/X_train.npy
+      hash: md5
+      md5: e05763df5c499a930dc6db8564e9d702
+      size: 398108488
+    - path: artifacts/sale/transformed/y_test.npy
+      hash: md5
+      md5: 1a8f6fb33fbd084334599a25778447b8
+      size: 75816
+    - path: artifacts/sale/transformed/y_train.npy
+      hash: md5
+      md5: 5943f7c5d459015aaabf2518ee2352bb
+      size: 302872
+    - path: src/mlproject_demo/config/config.yaml
+      hash: md5
+      md5: 5c6205e94577e54b96cf8db266472a60
+      size: 906
+    - path: src/mlproject_demo/models/train_sale_model.py
+      hash: md5
+      md5: b288c896fbc4cd94318ba5914c5a001e
+      size: 4076
+    outs:
+    - path: artifacts/sale/models/xgboost_sale.pkl
+      hash: md5
+      md5: 752083507131e5eb8e32f05aada6ebe1
+      size: 528565

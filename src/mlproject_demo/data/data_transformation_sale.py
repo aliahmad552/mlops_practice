@@ -96,7 +96,7 @@ class DataTransformationSale:
             np.save(os.path.join(self.config.sale_transformed_path,'X_train.npy'),X_train)
             np.save(os.path.join(self.config.sale_transformed_path,'X_test.npy'),X_test)
             np.save(os.path.join(self.config.sale_transformed_path,'y_train.npy'),y_train)
-            np.save(os.path.join(self.config.sale_transformed_path,'y_test.npy'),X_test)
+            np.save(os.path.join(self.config.sale_transformed_path,'y_test.npy'),y_test)
 
             save_object(preprocessor,os.path.join(self.config.sale_transformed_path,'preprocessor.pkl'))
 

@@ -11,3 +11,17 @@ transformed_rent:
 transformed_sale:
   sale_path: 'artifacts/sale/sale_data.csv'
   sale_transformed_path: 'artifacts/sale/transformed/'
+
+training:
+  rent:
+    transformed_path: 'artifacts/rent/transformed/'
+    model_path: 'artifacts/rent/models/xgboost_rent.pkl'
+    mlflow_experiment: 'house_prices_rent_v1'
+    preprocessor_path: 'artifacts/rent/transformed/preprocessor.pkl'
+
+    
+  sale:
+    transformed_path: 'artifacts/sale/transformed/'
+    model_path: 'artifacts/sale/models/xgboost_sale.pkl'
+    mlflow_experiment: 'house_prices_sale_v1'
+    preprocessor_path: 'artifacts/sale/transformed/preprocessor.pkl'

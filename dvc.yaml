@@ -16,10 +16,6 @@ stages:
     cmd: python -m src.mlproject_demo.data.data_transformation_rent
     deps:
       - src/mlproject_demo/data/data_transformation_rent.py
-      - src/mlproject_demo/utils/common.py
-      - src/mlproject_demo/utils/logger.py
-      - src/mlproject_demo/utils/exception.py
-      - src/mlproject_demo/config/config.yaml
       - artifacts/rent/rent_data.csv
     outs:
       - artifacts/rent/transformed/X_train.npy
@@ -32,10 +28,6 @@ stages:
     cmd: python -m src.mlproject_demo.data.data_transformation_sale
     deps:
       - src/mlproject_demo/data/data_transformation_sale.py
-      - src/mlproject_demo/utils/common.py
-      - src/mlproject_demo/utils/logger.py
-      - src/mlproject_demo/utils/exception.py
-      - src/mlproject_demo/config/config.yaml
       - artifacts/sale/sale_data.csv
     outs:
       - artifacts/sale/transformed/X_train.npy
@@ -43,3 +35,25 @@ stages:
       - artifacts/sale/transformed/y_train.npy
       - artifacts/sale/transformed/y_test.npy
       - artifacts/sale/transformed/preprocessor.pkl
+  train_rent_model:
+    cmd: python -m src.mlproject_demo.models.train_rent_model 
+    deps:
+      - src/mlproject_demo/models/train_rent_model.py
+      - artifacts/rent/transformed/X_train.npy
+      - artifacts/rent/transformed/X_test.npy
+      - artifacts/rent/transformed/y_train.npy
+      - artifacts/rent/transformed/y_test.npy
+      - src/mlproject_demo/config/config.yaml
+    outs:
+      - artifacts/rent/models/xgboost_rent.pkl
+  train_sale_model:
+    cmd: python -m src.mlproject_demo.models.train_sale_model 
+    deps:
+      - src/mlproject_demo/models/train_sale_model.py
+      - artifacts/sale/transformed/X_train.npy
+      - artifacts/sale/transformed/X_test.npy
+      - artifacts/sale/transformed/y_train.npy
+      - artifacts/sale/transformed/y_test.npy
+      - src/mlproject_demo/config/config.yaml
+    outs:
+      - artifacts/sale/models/xgboost_sale.pkl
